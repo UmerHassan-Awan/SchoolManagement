@@ -1,0 +1,64 @@
+<div class="modal-header">
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  #addClass = "ngForm">
+            <div class="row" style="margin-bottom: 10px" *ngIf="(AlertMessage !== '' && AlertMessage == 'Record Exists')">
+                <div class="col-md-12">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <span class="alert-inner--icon"></span>
+                        <span class="alert-inner--text">Section already exist for this class.</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">School<sup>*</sup></label>
+                        <select class="form-control" name="School" [(ngModel)]="modal.SchoolID" name="SchoolID" (change)="LoadSchoolBranches($event.target.value)" required>
+                            <option value="0">Select School</option>
+                            <option *ngFor="let Scl of SchoolsList" [value]="Scl.SchoolID">{{Scl.SchoolName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Branch<sup>*</sup></label>
+                        <select class="form-control" [disabled]="SchoolBranchesList.length == 0" [(ngModel)]="modal.SchoolBranchID" name="SchoolBranchID" (change)="LoadBranchClasses($event.target.value)" required>
+                            <option value="0">Select Branch</option>
+                            <option *ngFor="let Branch of SchoolBranchesList" [value]="Branch.BranchID">{{Branch.BranchName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Class<sup>*</sup></label>
+                        <select class="form-control" [disabled]="BranchClassesList.length == 0" [(ngModel)]="modal.ClassID"
+                            name="ClassID" required>
+                            <option value="0">Select Branch</option>
+                            <option *ngFor="let Class of BranchClassesList" [value]="Class.ClassID">{{Class.ClassName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Section Name<sup>*</sup></label>
+                        <input type="text" placeholder="ClassName" [(ngModel)]="modal.SectionName" name="SectionName"
+                            class="form-control" required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <input type="button" class="btn btn-primary" [disabled]="addClass.invalid" style="width: 100px !important;" value="{{btnText}}" (click)="SubmitData()">
+                    <input type="button" class="btn btn-danger" style="width: 100px !important;" value="Cancel" (click)="modalRef.hide()">
+                </div>
+            </div>
+        </form>
+      </div>

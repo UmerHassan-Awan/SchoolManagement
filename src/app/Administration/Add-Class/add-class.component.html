@@ -1,0 +1,98 @@
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <div class="container-fluid">
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
+        aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Brand -->
+      <a class="navbar-brand pt-0" href="javascript:void(0)">
+          <img src="assets/img/brand/eschool.jpg" style="max-height: 5.8rem;" class="navbar-brand-img" alt="...">
+      </a>
+      <!-- Top Menus Component -->
+      <app-top-menu></app-top-menu>
+  
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Collapse header -->
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a href="index-2.html">
+                <img src="assets/img/brand/eschool.jpg">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main"
+                aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Side Navigation Component -->
+        <app-side-menu></app-side-menu>
+      </div>
+    </div>
+  </nav>
+  <div class="main-content">
+      <!-- Navbar -->
+      <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+          <div class="container-fluid">
+              <!-- Brand -->
+              <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="javascript:void(0)">Add Class</a>
+  
+              <!-- User -->
+              <app-top-right-user-menu></app-top-right-user-menu>
+          </div>
+      </nav>
+      <!-- End Navbar -->
+      <!-- Header -->
+      <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+          <div class="container-fluid">
+              <div class="header-body">
+  
+              </div>
+          </div>
+      </div>
+      <div class="container-fluid mt--7">
+          <div class="col-xl-12 mb-12 mb-xl-0">
+              <div class="card shadow">
+                  <div class="card-body border-0">
+                      <form #addClass="ngForm">
+                          <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">School<sup>*</sup></label>
+                                    <angular2-multiselect [data]="SchoolsList" name="SelectedSchool" [(ngModel)]="SelectedSchool"
+                                        [settings]="MultiSelectSetting[0].SchoolDDSetting" (onSelect)="LoadSchoolBranches($event)"> </angular2-multiselect>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Branch<sup>*</sup></label>
+                                    <angular2-multiselect [data]="SchoolBranchesList" name="SelectedBranch" [(ngModel)]="SelectedBranch"
+                                        [settings]="MultiSelectSetting[0].BranchDDSetting"> </angular2-multiselect>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Class Name<sup>*</sup></label>
+                                    <input type="text" placeholder="ClassName" [(ngModel)]="modal.ClassName" name="ClassName"
+                                        class="form-control" required />
+                                </div>
+                            </div>
+  
+                              <div class="col-md-12 text-center">
+                                  <input type="submit" class="btn btn-primary" [disabled]="addClass.invalid || SelectedBranch.length == 0 || SelectedSchool.length == 0" value="Save" (click)="SubmitData()">
+                                  <input type="submit" class="btn btn-primary" [disabled]="addClass.invalid || SelectedBranch.length == 0 || SelectedSchool.length == 0"  value="Save & More" (click)="SaveAndMore()">
+                                  <input type="button" class="btn btn-danger" value="Cancel" [routerLink]="['/ClassManagement']">
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>

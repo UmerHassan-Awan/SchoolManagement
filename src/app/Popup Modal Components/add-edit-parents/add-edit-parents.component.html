@@ -1,0 +1,128 @@
+<div class="modal-header">
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  #addClass = "ngForm">
+            <div class="row">
+                <div class="col-xl-3">
+                    <div class="profile-img text-center">
+                        <img src="https://www.rkckettlebell.de/images/profile/empty.jpg" style="width: 200px;height: 200;"
+                            class="rounded-circle img-thumbnail">
+                        <p>Upload a different photo</p>
+                        <input type="file" class="form-control" style="margin-left: 10px">
+                    </div>
+                </div>
+                <div class="col-xl-9">
+                    <div class="nav-wrapper">
+                        <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab"
+                                    href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true">
+                                    <i class="ni ni-single-02 mr-2"></i>Personal Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
+                                    href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i
+                                        class="ni fa fa-phone mr-2" style="font-size: 17px"></i>Contact Information</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
+                                    aria-labelledby="tabs-icons-text-1-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">First Name<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Last Name<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Gender<sup>*</sup></label>
+                                                <select class="form-control">
+                                                    <option value="">Male</option>
+                                                    <option value="female">Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Occupation</label>
+                                                <input type="text" class="form-control" placeholder="Occupation" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Reation With Student<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Relation">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Religion<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Religion">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <a class="btn btn-primary" data-toggle="tab" href="#tabs-icons-text-2"
+                                                role="tab" aria-selected="true">Next</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Mobile 1<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Enter Mobile Number">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Mobile 2<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Enter Mobile Number">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Email<sup>*</sup></label>
+                                                <input type="email" class="form-control" placeholder="Enter Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Password<sup>*</sup></label>
+                                                <input type="password" class="form-control" placeholder="Enter Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Flags</label>
+                                                <angular2-multiselect [data]="dropdownList" name="Flags" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
+                                                    (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)"
+                                                    (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+      </div>

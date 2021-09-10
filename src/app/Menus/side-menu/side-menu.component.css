@@ -1,0 +1,39 @@
+.dropdown-toggle
+{
+    background: transparent !important;
+    box-shadow: none !important;
+    color: rgba(0,0,0,.5) !important;
+    font-size: 14px !important;
+    font-weight: unset !important;
+}
+.dropdown-menu
+{
+    left: 30px !important;
+}
+/* .DDmenuicon
+{
+    min-width: 0rem;
+    font-size: .9375rem;
+    line-height: 1.5rem;
+    padding-right: 21px;
+} */
+.dropdown-toggle:after
+{
+    margin-left: 58px;
+}
+@media (max-width: 767.98px)
+{
+    .dropdown-toggle
+    {
+        color: #172b4d!important;
+        margin-left: -9px !important;
+    }
+    .dropdown-menu
+    {
+        padding-left: 60px !important;
+    }
+    .dropdown-toggle:after
+    {
+        margin-left: 149px;
+    }
+}

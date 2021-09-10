@@ -1,0 +1,118 @@
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+        <div class="container-fluid">
+          <!-- Toggler -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Brand -->
+          <a class="navbar-brand pt-0" href="index-2.html">
+            <img src="assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+          </a>
+          <!-- Top Menus Component -->
+          <app-top-menu></app-top-menu>
+    
+          <!-- Collapse -->
+          <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+            <!-- Collapse header -->
+            <div class="navbar-collapse-header d-md-none">
+              <div class="row">
+                <div class="col-6 collapse-brand">
+                  <a href="index-2.html">
+                    <img src="assets/img/brand/blue.png">
+                  </a>
+                </div>
+                <div class="col-6 collapse-close">
+                  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                    <span></span>
+                    <span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Side Navigation Component -->
+            <app-side-menu></app-side-menu>
+          </div>
+        </div>
+      </nav>
+      <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+          <div class="container-fluid">
+            <!-- Brand -->
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="index-2.html">Employee Detail</a>
+            
+            <!-- User -->
+            <app-top-right-user-menu></app-top-right-user-menu>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+        <!-- Header -->
+        <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+          <div class="container-fluid">
+            <div class="header-body">
+              
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid mt--7">
+          <div class="col-xl-12 mb-12 mb-xl-0">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h2 class="mb-0"><b>Employee Detail</b></h2>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4" style="padding-left: 35px;padding-right: 35px">
+                    <img [src]="EmployeeData.Picture" style="width: 100%;" class="img-thumbnail">
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+                            <h2>{{EmployeeData.FirstName}} {{EmployeeData.MiddleName}} {{EmployeeData.LastName}}</h2>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12" style="line-height: 3" >
+                            <label class="control-label"><b>Name: </b> {{EmployeeData.FirstName}} {{EmployeeData.MiddleName}} {{EmployeeData.LastName}}</label>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="line-height: 3">
+                            <label class="control-label"><b>Gender: </b> {{EmployeeData.Gender}}</label>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="line-height: 3">
+                            <label class="control-label"><b>Father Name: </b> {{EmployeeData.FatherName}}</label>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="line-height: 3">
+                            <label class="control-label"><b>Mother Name: </b> {{EmployeeData.MotherName}}</label>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="line-height: 3">
+                            <label class="control-label"><b>Joining Date: </b> {{convertJsonDate(EmployeeData.JoiningDate)}}</label>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="line-height: 3">
+                            <label class="control-label"><b>E-mail: </b> {{EmployeeData.Email}}</label>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="line-height: 3">
+                            <label class="control-label"><b>Employee No: </b> {{EmployeeData.EmployeeNo}}</label>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="line-height: 3">
+                            <label class="control-label"><b>CNIC: </b>{{EmployeeData.CNIC}}</label>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="line-height: 3">
+                            <label class="control-label"><b>Address: </b> {{EmployeeData.Address}}</label>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="line-height: 3">
+                            <label class="control-label"><b>MobileNo: </b> {{EmployeeData.MobileNo}}</label>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="line-height: 3">
+                            <label class="control-label"><b>Salary: </b> {{EmployeeData.Salary}}</label>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,314 @@
+<div class="modal-header">
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  #addClass = "ngForm">
+            <div class="row">
+                <div class="col-xl-3">
+                    <div class="profile-img text-center">
+                        <img [src]="modal.Picture" style="width: 200px;max-height: 200px;"
+                            class="rounded-circle img-thumbnail">
+                        <p>Upload a different photo</p>
+                        <input type="file" accept="image/*" (change)="loadImage($event)" class="form-control" style="margin-left: 10px">
+                        <input type="button" class="btn btn-default btn-block mt-3" value="Take Photo" style="margin-left: 10px">
+                    </div>
+                </div>
+                <div class="col-xl-9">
+                    <div class="row">
+                        <div class="col-md-6 text-left">
+                            <div class="form-group">
+                                <label class="control-label">Addmission Number : <b>{{modal.StudentRegNo}}</b></label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <div class="form-group">
+                                <label class="control-label">Addmission Date : <b>{{modal.AdmissionDate}}</b></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav-wrapper">
+                        <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1"
+                                    role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"
+                                    [class.disabled]="modal.SchoolID == '0' || modal.SchoolBranchID == '0' || 
+                                    (modal.FirstName == undefined || modal.FirstName == '') || (modal.MiddleName == undefined || modal.MiddleName == '') ||
+                                    (modal.LastName == undefined || modal.LastName == '') || (modal.MotherTongue == undefined || modal.MotherTongue == '') ||
+                                    (modal.Nationality == undefined || modal.Nationality == '') || (modal.DOB == undefined || modal.DOB == '')">
+                                    <i class="ni ni-single-02 mr-2"></i>Student Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab"
+                                    aria-controls="tabs-icons-text-2" aria-selected="false"
+                                    [class.disabled]="modal.CountryID == '0' || modal.CityID == '0' ||
+                                            (modal.Address == undefined || modal.Address == '') || (modal.Phone == undefined || modal.Phone == '') ||
+                                            (modal.Mobile == undefined || modal.Mobile == '') || (modal.Email == undefined || modal.Email == '')">
+                                            <i class="ni fa fa-phone mr-2" style="font-size: 17px"></i>Contact Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-3"
+                                    role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"
+                                    [class.disabled]="(modal.LastSchoolName == undefined || modal.LastSchoolName == '') || (modal.LastClass == undefined || modal.LastClass == '') ||
+                                                (modal.LastYear == undefined || modal.LastYear == '') || (modal.LastTotalMarks == undefined || modal.LastTotalMarks == '')"
+                                ><i class="ni fa fa-building-o mr-2" style="font-size: 17px"></i>Previous School</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab" href="#tabs-icons-text-4"
+                                    role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"
+                                    [class.disabled]="true"
+                                ><i class="ni fa fa-list-alt mr-2" style="font-size: 17px"></i>Student Flags</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
+                                    aria-labelledby="tabs-icons-text-1-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">School<sup>*</sup></label>
+                                                <select class="form-control" name="SchoolID" [(ngModel)] = "modal.SchoolID"
+                                                    (change)="LoadSchoolBranches($event.target.value)" required>
+                                                    <option value="0">Select School</option>
+                                                    <option *ngFor="let Scl of SchoolsList" [value]="Scl.SchoolID">{{Scl.SchoolName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Branch<sup>*</sup></label>
+                                                <select class="form-control" [disabled]="SchoolBranchesList.length == 0" name="SchoolBranchID" [(ngModel)] = "modal.SchoolBranchID" required>
+                                                    <option value="0">Select Branch</option>
+                                                    <option *ngFor="let Branch of SchoolBranchesList" [value]="Branch.BranchID">{{Branch.BranchName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">First Name<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="First Name" [(ngModel)] = "modal.FirstName" name="FirstName" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Middle Name</label>
+                                                <input type="text" class="form-control" placeholder="Middle Name" [(ngModel)] = "modal.MiddleName" name="MiddleName">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Last Name<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Last Name" [(ngModel)] = "modal.LastName" name="LastName" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Date of Birth<sup>*</sup></label>
+                                                <input type="text" class="form-control" bsDatepicker [bsValue]="bsValue" [(ngModel)] = "modal.DOB" name="DOB" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Gender<sup>*</sup></label>
+                                                <select class="form-control" [(ngModel)] = "modal.Gender" name="Gender" required>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Blood Group</label>
+                                                <input type="text" class="form-control" placeholder="Blood Group" [(ngModel)] = "modal.BloodGroup" name="BloodGroup">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Mother Tongue<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Mother Tongue" [(ngModel)] = "modal.MotherTongue" name="MotherTongue">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Birth Place</label>
+                                                <input type="text" class="form-control" placeholder="Birth Place" [(ngModel)] = "modal.BirthPlace" name="BirthPlace">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Nationality<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Nationality" [(ngModel)] = "modal.Nationality" name="Nationality">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Religion<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Religion" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <button type="button" (click)="OnNext('Tab1')" class="btn btn-success"
+                                            [disabled]="modal.SchoolID == '0' || modal.SchoolBranchID == '0' || 
+                                            (modal.FirstName == undefined || modal.FirstName == '') || (modal.MiddleName == undefined || modal.MiddleName == '') ||
+                                            (modal.LastName == undefined || modal.LastName == '') || (modal.MotherTongue == undefined || modal.MotherTongue == '') ||
+                                            (modal.Nationality == undefined || modal.Nationality == '') || (modal.DOB == undefined || modal.DOB == '')"
+                                            >Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Address<sup>*</sup></label>
+                                                <textarea class="form-control" rows="3" [(ngModel)] = "modal.Address" name="Address" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Address 2</label>
+                                                <textarea class="form-control" rows="3" [(ngModel)] = "modal.Address2" name="Address2"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Country<sup>*</sup></label>
+                                                <select class="form-control" [(ngModel)] = "modal.CountryID" name="CountryID" required>
+                                                    <option value="0">Select Country</option>
+                                                    <option value="1">Pakistan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">City<sup>*</sup></label>
+                                                <select class="form-control" [(ngModel)] = "modal.CityID" name="CityID" required>
+                                                    <option value="0">Select City</option>
+                                                    <option *ngFor="let City of CityList" [value]="City.CityId">{{City.CityName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Phone No<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Phone No" [(ngModel)] = "modal.Phone" name="Phone" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Mobile No<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Mobile No" [(ngModel)] = "modal.Mobile" name="Mobile">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Email<sup>*</sup></label>
+                                                <input type="email" class="form-control" placeholder="abc@gmail.com" [(ngModel)] = "modal.Email" name="Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <button type="button" (click)="onPrevious('Tab2')" class="btn btn-success">Previous</button>
+                                            <button type="button" (click)="OnNext('Tab2')" class="btn btn-success"
+                                            [disabled]="modal.CountryID == '0' || modal.CityID == '0' ||
+                                            (modal.Address == undefined || modal.Address == '') || (modal.Phone == undefined || modal.Phone == '') ||
+                                            (modal.Mobile == undefined || modal.Mobile == '') || (modal.Email == undefined || modal.Email == '')"
+                                            >Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                                                <input class="custom-control-input" id="IsEmail" type="checkbox" [(ngModel)]="modal.IsEmail" name="IsEmail">
+                                                <label class="custom-control-label" for="IsEmail">Is Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                                                <input class="custom-control-input" id="IsSMS" type="checkbox" [(ngModel)]="modal.IsSMS" name="IsSMS">
+                                                <label class="custom-control-label" for="IsSMS">Is SMS</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                                                <input class="custom-control-input" id="IsStudentCard" type="checkbox" [(ngModel)]="modal.IsStudentCard" name="IsStudentCard">
+                                                <label class="custom-control-label" for="IsStudentCard">Is Student Card</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                                                <input class="custom-control-input" id="IsLibraryCard" type="checkbox" [(ngModel)]="modal.IsLibraryCard" name="IsLibraryCard">
+                                                <label class="custom-control-label" for="IsLibraryCard">Is Library Card</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                                                <input class="custom-control-input" id="IsTransport" type="checkbox" [(ngModel)]="modal.IsTransport" name="IsTransport">
+                                                <label class="custom-control-label" for="IsTransport">Is Transport</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <button type="button" role="tab" (click)="onPrevious('Tab4')" class="btn btn-success" data-toggle="tab"
+                                                aria-controls="tabs-icons-text-2">Previous</button>
+                                            <input type="button" class="btn btn-success" (click)="SubmitData()" value={{btnText}}>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Last School Name<sup>*</sup></label>
+                                                <input type="text" class="form-control" placeholder="Last School Name" [(ngModel)] = "modal.LastSchoolName" name="LastSchoolName">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Last Class<sup>*</sup></label>
+                                                <input type="number" min="0" class="form-control" placeholder="Last Class" [(ngModel)] = "modal.LastClass" name="LastClass">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Last Year<sup>*</sup></label>
+                                                <input type="number" min="0" class="form-control" placeholder="Last Year" [(ngModel)] = "modal.LastYear" name="LastYear">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Last Total Marks<sup>*</sup></label>
+                                                <input type="number" min="0" class="form-control" placeholder="Last Marks" [(ngModel)] = "modal.LastTotalMarks" name="LastTotalMarks">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <button type="button" role="tab" (click)="onPrevious('Tab3')" class="btn btn-success" data-toggle="tab"
+                                                aria-controls="tabs-icons-text-2">Previous</button>
+                                            <button type="button" (click)="OnNext('Tab3')" class="btn btn-success"
+                                                [disabled]="(modal.LastSchoolName == undefined || modal.LastSchoolName == '') || (modal.LastClass == undefined || modal.LastClass == '') ||
+                                                (modal.LastYear == undefined || modal.LastYear == '') || (modal.LastTotalMarks == undefined || modal.LastTotalMarks == '')">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+      </div>

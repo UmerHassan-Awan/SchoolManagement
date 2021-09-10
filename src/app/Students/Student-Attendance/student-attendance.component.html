@@ -1,0 +1,157 @@
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <div class="container-fluid">
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Brand -->
+      <a class="navbar-brand pt-0" href="index-2.html">
+        <img src="assets/img/brand/download.png" class="navbar-brand-img" alt="...">
+      </a>
+      <!-- Top Menus Component -->
+      <app-top-menu></app-top-menu>
+
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Collapse header -->
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a href="index-2.html">
+                <img src="assets/img/brand/blue.png">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Side Navigation Component -->
+        <app-side-menu></app-side-menu>
+      </div>
+    </div>
+  </nav>
+  <div class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+      <div class="container-fluid">
+        <!-- Brand -->
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="index-2.html">Student Attendance</a>
+        
+        <!-- User -->
+        <app-top-right-user-menu></app-top-right-user-menu>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <div class="container-fluid">
+        <div class="header-body">
+          
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid mt--7">
+      <div class="col-xl-12 mb-12 mb-xl-0">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="mb-0">Students</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">Select Class<sup>*</sup></label>
+                        <select class="form-control" name="ClassID" [(ngModel)]="modal.ClassID">
+                            <option value="0">Select Class</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">Select Class Section<sup>*</sup></label>
+                        <select class="form-control" name="SectionID" [(ngModel)]="modal.SectionID">
+                            <option value="0">Select Class Section</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">Select Subject<sup>*</sup></label>
+                        <select class="form-control" name="SubjectID" [(ngModel)]="modal.SubjectID">
+                            <option value="0">Select Subject</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">Attendance Date<sup>*</sup></label>
+                        <input type="text" bsDatepicker [bsValue]="bsValue" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                    <table class="table align-items-center">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">Roll No</th>
+                          <th scope="col">Student Name</th>
+                          <th scope="col">Present</th>
+                          <th scope="col">Absent</th>
+                          <th scope="col">Leave</th>
+                          <th scope="col">Leave Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody class="list" style="background: #f7fafce8;">
+                        <tr *ngFor="let item of StudentsList">
+                            <td></td>
+                            <td>
+                                {{item.FirstName}} {{item.MiddleName}} {{item.LastName}}
+                            </td>
+                            <td class="text-center">
+                                <div class="custom-control custom-control-alternative custom-checkbox">
+                                    <input class="custom-control-input" id="{{item.StudentID}}_presentCheck" type="checkbox">
+                                    <label class="custom-control-label" for="{{item.StudentID}}_presentCheck">
+                                      <span class="text-muted"></span>
+                                    </label>
+                                  </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="custom-control custom-control-alternative custom-checkbox">
+                                    <input class="custom-control-input" id="{{item.StudentID}}_absentCheck" type="checkbox">
+                                    <label class="custom-control-label" for="{{item.StudentID}}_absentCheck">
+                                      <span class="text-muted"></span>
+                                    </label>
+                                  </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="custom-control custom-control-alternative custom-checkbox">
+                                    <input class="custom-control-input" id="{{item.StudentID}}_leaveCheck" type="checkbox">
+                                    <label class="custom-control-label" for="{{item.StudentID}}_leaveCheck">
+                                      <span class="text-muted"></span>
+                                    </label>
+                                  </div>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="Remarks">
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

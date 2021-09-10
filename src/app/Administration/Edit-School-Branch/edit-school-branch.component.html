@@ -1,0 +1,151 @@
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <div class="container-fluid">
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
+        aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Brand -->
+      <a class="navbar-brand pt-0" href="javascript:void(0)">
+          <img src="assets/img/brand/eschool.jpg" style="max-height: 5.8rem;" class="navbar-brand-img" alt="...">
+      </a>
+      <!-- Top Menus Component -->
+      <app-top-menu></app-top-menu>
+  
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Collapse header -->
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a href="index-2.html">
+                <img src="assets/img/brand/blue.png">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main"
+                aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Side Navigation Component -->
+        <app-side-menu></app-side-menu>
+      </div>
+    </div>
+  </nav>
+  <div class="main-content">
+      <!-- Navbar -->
+      <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+          <div class="container-fluid">
+              <!-- Brand -->
+              <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="javascript:void(0)">Update School Branch</a>
+  
+              <!-- User -->
+              <app-top-right-user-menu></app-top-right-user-menu>
+          </div>
+      </nav>
+      <!-- End Navbar -->
+      <!-- Header -->
+      <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+          <div class="container-fluid">
+              <div class="header-body">
+  
+              </div>
+          </div>
+      </div>
+      <div class="container-fluid mt--7">
+          <div class="col-xl-12 mb-12 mb-xl-0">
+              <div class="card shadow">
+                  <div class="card-body border-0">
+                      <form #addSchoolBranch="ngForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">School<sup>*</sup></label>
+                                    <angular2-multiselect [data]="SchoolsList" name="SelectedSchool" [(ngModel)]="SelectedSchool"
+                                        [settings]="MultiSelectSetting[0].SchoolDDSetting"> </angular2-multiselect>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Branch Name<sup>*</sup></label>
+                                    <input type="text" placeholder="School Name" [(ngModel)]="modal.BranchName" name="BranchName"
+                                        class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Branch Owner<sup>*</sup></label>
+                                    <input type="text" placeholder="School Owner" [(ngModel)]="modal.BranchOwnerName" name="BranchOwnerName"
+                                        class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Telephone Number<sup>*</sup></label>
+                                    <input type="text" placeholder="Telephone" [(ngModel)]="modal.TelephoneNo" name="TelephoneNo"
+                                        class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Email<sup>*</sup></label>
+                                    <input type="email" placeholder="adc@gmail.com" class="form-control" #EmailFeild="ngModel" ngModel pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    [(ngModel)]="modal.Email" name="Email" required />
+                                    <span style="color: red; font-size: 13px; font-weight: 600; position: absolute;" *ngIf="EmailFeild.dirty && EmailFeild.errors?.pattern">Incorrect e-mail format</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Mobile 1</label>
+                                    <input type="text" placeholder="Mobile 1" [(ngModel)]="modal.MobileNo1" name="MobileNo"
+                                        class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Mobile 2</label>
+                                    <input type="text" placeholder="Mobile 2" [(ngModel)]="modal.MobileNo2" name="MobileNo2"
+                                        class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Address 1<sup>*</sup></label>
+                                    <input type="text" placeholder="Address 1" [(ngModel)]="modal.Address" name="Address"
+                                        class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">City<sup>*</sup></label>
+                                    <select class="form-control" [(ngModel)]="modal.CityID" name="CityID" required>
+                                        <option value="">Select City</option>
+                                        <option *ngFor="let City of CityList" [value]="City.CityId" >{{City.CityName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Province<sup>*</sup></label>
+                                    <select class="form-control" [(ngModel)]="modal.ProvinceID" name="ProvinceID" required>
+                                        <option value="">Select Province</option>
+                                        <option *ngFor="let Province of ProvinceList" [value]="Province.ProvinceID" >{{Province.ProvinceName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <input type="submit" class="btn btn-primary" [disabled]="addSchoolBranch.invalid || SelectedSchool.length == 0" style="width: 100px !important;"
+                                    value="Update" (click)="SubmitData()">
+                                <input type="button" class="btn btn-danger" style="width: 100px !important;" value="Cancel" [routerLink]="['/SchoolBranches']">
+                            </div>
+                        </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
